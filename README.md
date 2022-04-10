@@ -1,1 +1,2 @@
-# A face recognition app made using React and Clarifai face recognition api.
+# Smart Brain
+A face recognition app made using React and Clarifai face recognition api.
