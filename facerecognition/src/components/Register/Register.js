@@ -1,26 +1,26 @@
-import React from "react";
+import React from 'react';
 
 class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
-      password: "",
-      name: "",
-    };
+      email: '',
+      password: '',
+      name: ''
+    }
   }
 
   onNameChange = (event) => {
-    this.setState({ name: event.target.value });
-  };
+    this.setState({name: event.target.value})
+  }
 
   onEmailChange = (event) => {
-    this.setState({ email: event.target.value });
-  };
+    this.setState({email: event.target.value})
+  }
 
   onPasswordChange = (event) => {
-    this.setState({ password: event.target.value });
-  };
+    this.setState({password: event.target.value})
+  }
 
   onSubmitSignIn = () => {
     fetch("https://safe-beyond-54006.herokuapp.com/register", {
@@ -29,17 +29,18 @@ class Register extends React.Component {
       body: JSON.stringify({
         email: this.state.email,
         password: this.state.password,
-        name: this.state.name,
-      }),
+        name: this.state.name
+      })
     })
-      .then((response) => response.json())
-      .then((user) => {
-        if (user) {
-          this.props.loadUser(user);
-          this.props.onRouteChange("home");
+      .then(response => response.json())
+      .then(user => {
+        if (user.id) {
+          this.props.loadUser(user)
+          this.props.onRouteChange('home');
         }
-      });
-  };
+      })
+  }
+
 
   render() {
     return (

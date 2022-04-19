@@ -1,21 +1,21 @@
-import React from "react";
+import React from 'react';
 
 class Signin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      signInEmail: "",
-      signInPassword: "",
-    };
+      signInEmail: '',
+      signInPassword: ''
+    }
   }
 
   onEmailChange = (event) => {
-    this.setState({ signInEmail: event.target.value });
-  };
+    this.setState({signInEmail: event.target.value})
+  }
 
   onPasswordChange = (event) => {
-    this.setState({ signInPassword: event.target.value });
-  };
+    this.setState({signInPassword: event.target.value})
+  }
 
   onSubmitSignIn = () => {
     fetch("https://safe-beyond-54006.herokuapp.com/signin", {
@@ -23,17 +23,17 @@ class Signin extends React.Component {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         email: this.state.signInEmail,
-        password: this.state.signInPassword,
-      }),
+        password: this.state.signInPassword
+      })
     })
-      .then((response) => response.json())
-      .then((user) => {
+      .then(response => response.json())
+      .then(user => {
         if (user.id) {
-          this.props.loadUser(user);
-          this.props.onRouteChange("home");
+          this.props.loadUser(user)
+          this.props.onRouteChange('home');
         }
-      });
-  };
+      })
+  }
 
   render() {
     const { onRouteChange } = this.props;

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Clarifai from "clarifai";
 import FaceRecognition from "./components/FaceRecognition/FaceRecognition";
 import Navigation from "./components/Navigation/Navigation";
 import Signin from "./components/Signin/Signin";
@@ -8,10 +7,6 @@ import Logo from "./components/Logo/Logo";
 import ImageLinkForm from "./components/ImageLinkForm/ImageLinkForm";
 import Rank from "./components/Rank/Rank";
 import "./App.css";
-
-const app = new Clarifai.App({
-  apiKey: "a6195df3c9f549509de4d259f6af7ad8",
-});
 
 const particlesOptions = {
   particles: {
