@@ -21,19 +21,19 @@ const particlesOptions = {
 };
 
 const initialState = {
-  input: '',
-  imageUrl: '',
+  input: "",
+  imageUrl: "",
   box: {},
-  route: 'signin',
+  route: "signin",
   isSignedIn: false,
   user: {
-    id: '',
-    name: '',
-    email: '',
+    id: "",
+    name: "",
+    email: "",
     entries: 0,
-    joined: ''
-  }
-}
+    joined: "",
+  },
+};
 
 class App extends Component {
   constructor() {
@@ -76,35 +76,34 @@ class App extends Component {
   };
 
   onButtonSubmit = () => {
-    this.setState({imageUrl: this.state.input});
-      fetch('https://safe-beyond-54006.herokuapp.com/imageurl', {
-        method: 'post',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          input: this.state.input
-        })
-      })
-      .then(response => response.json())
-      .then(response => {
+    this.setState({ imageUrl: this.state.input });
+    fetch("https://safe-beyond-54006.herokuapp.com/imageurl", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        input: this.state.input,
+      }),
+    })
+      .then((response) => response.json())
+      .then((response) => {
         if (response) {
-          fetch('https://safe-beyond-54006.herokuapp.com/image', {
-            method: 'put',
-            headers: {'Content-Type': 'application/json'},
+          fetch("https://safe-beyond-54006.herokuapp.com/image", {
+            method: "put",
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-              id: this.state.user.id
-            })
+              id: this.state.user.id,
+            }),
           })
-            .then(response => response.json())
-            .then(count => {
-              this.setState(Object.assign(this.state.user, { entries: count}))
+            .then((response) => response.json())
+            .then((count) => {
+              this.setState(Object.assign(this.state.user, { entries: count }));
             })
-            .catch(console.log)
-
+            .catch(console.log);
         }
-        this.displayFaceBox(this.calculateFaceLocation(response))
+        this.displayFaceBox(this.calculateFaceLocation(response));
       })
-      .catch(err => console.log(err));
-  }
+      .catch((err) => console.log(err));
+  };
 
   onRouteChange = (route) => {
     if (route === "signout") {
